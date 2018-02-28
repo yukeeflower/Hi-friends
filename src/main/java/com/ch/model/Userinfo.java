@@ -6,6 +6,7 @@ import java.util.Date;
  * Created by apple on 2018/2/7.
  */
 public class Userinfo {
+
     private int id;
 
     private String username;
@@ -23,6 +24,24 @@ public class Userinfo {
     private Date createTime;
 
     private Date lastModify;
+
+    private int status;
+
+    @Override
+    public String toString() {
+        return "Userinfo{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", money=" + money +
+                ", email='" + email + '\'' +
+                ", createTime=" + createTime +
+                ", lastModify=" + lastModify +
+                ", status=" + status +
+                '}';
+    }
 
     public int getId() {
         return id;
@@ -94,5 +113,13 @@ public class Userinfo {
 
     public void setLastModify(Date lastModify) {
         this.lastModify = lastModify;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
