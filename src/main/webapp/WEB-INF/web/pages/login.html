@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hi,Friends登录</title>
+    <link href="../css/login.css" rel="stylesheet">
+    <script type="text/javascript" src="../js/login.js"></script>
+</head>
+<body>
+    <div id="floater"></div>
+    <div id="loginbox">
+        <div id="left">
+            <div id="left-box">
+                <div id="login-logo"><img src="../image/login-logo.png"></div>
+                <div id="login-title"><img src="../image/login-title.png"></div>
+            </div>
+        </div>
+
+        <div id="right">
+            <div style="clear: both"></div>
+
+            <div id="right-title">
+                <img src="../image/LOGIN.png">
+            </div>
+
+            <div id="right-text">
+
+                <div id="login-form">
+                    <form action = "/login" method="POST">
+                    <p>
+                        <input type="text" name="username" id="username" placeholder="请输入用户名" >
+                    </p>
+                    <p>
+                        <input type="password" name="password" placeholder="请输入密码">
+                    </p>
+                        <#if msg??>
+                            ${msg}
+                        </#if>
+                    <p id="btn">
+
+                        <input type="submit" id="okbtn" value="登录">
+                    </p>
+                    </form>
+
+                </div>
+
+                <div id="right-foot">
+                    <a id="foot-addid">注册账号</a>
+                    <a id="foot-pass">忘记密码</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
