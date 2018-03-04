@@ -21,7 +21,7 @@ public class RemarkDAOTest {
 
     @Test
     public void getRemarkById() throws Exception {
-        Remark remark = remarkDAO.getRemarkById(1);
+        Remark remark = remarkDAO.selectRemarkById(1);
         System.out.println(remark.toString());
     }
 

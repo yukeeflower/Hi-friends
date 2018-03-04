@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface TagsDAO {
 
     @Select({"select * from Tags where id = #{id}"})
-    Tags getTagById(int id);
+    Tags selectTagById(int id);
 }

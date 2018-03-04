@@ -21,7 +21,7 @@ public class FavorDAOTest {
 
     @Test
     public void getFavorById() throws Exception {
-        Favor favor = favorDAO.getFavorById(1);
+        Favor favor = favorDAO.selectFavorById(1);
         System.out.println(favor.toString());
     }
 

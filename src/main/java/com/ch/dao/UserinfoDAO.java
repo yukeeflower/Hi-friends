@@ -35,11 +35,12 @@ public interface UserinfoDAO {
             "<if test=\"money != null \">money = #{money} ,</if>"+
             "<if test=\"createTime != null \">create_time = #{createTime} ,</if>"+
             "<if test=\"lastModify != null \">last_modify = #{lastModify} </if>"+
+            "<if test=\"headUrl != null \">head_url = #{headUrl} </if>"+
             "</trim>"+
             "where id = #{id} </script>"})
     int updateUserinfoSelective(Userinfo userinfo );
 
-    @Insert({"insert into userinfo(username,password,salt,nickname,money,email,create_time,last_modify) " +
-            "values(#{username},#{password},#{salt},#{nickname},#{money},#{email},#{createTime},#{lastModify})"})
+    @Insert({"insert into userinfo(username,password,salt,nickname,money,email,create_time,last_modify,status,head_url) " +
+            "values(#{username},#{password},#{salt},#{nickname},#{money},#{email},#{createTime},#{lastModify},#{status},#{headUrl})"})
     int insertUser(Userinfo userinfo);
 }

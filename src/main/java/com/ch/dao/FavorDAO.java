@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface FavorDAO {
 
     @Select({"select * from Favor where id = #{id}"})
-    Favor getFavorById(int id);
+    Favor selectFavorById(int id);
 }

@@ -1,5 +1,6 @@
 package com.ch.service;
 
+import com.ch.model.Userinfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,15 @@ public class UserinfoServiceTest {
         System.out.println(map);
     }
 
+    @Test
+    public void regist()throws Exception{
+        Userinfo userinfo = new Userinfo();
+        userinfo.setUsername("li");
+        userinfo.setPassword("123456");
+        userinfo.setNickname("风中的筱橙子丶");
+        userinfo.setMoney(0);
+        userinfoService.regist("li","123456","风中的筱橙子丶");
+    }
 
 
 }

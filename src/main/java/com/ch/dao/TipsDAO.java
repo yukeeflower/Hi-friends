@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface TipsDAO {
 
     @Select({"select * from tips where id = #{id}"})
-    Tips getTipById(int id);
+    Tips selectTipById(int id);
 
 }

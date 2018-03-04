@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface RemarkDAO {
 
     @Select({"select * from remark where id = #{id}"})
-    Remark getRemarkById(int id);
+    Remark selectRemarkById(int id);
 }

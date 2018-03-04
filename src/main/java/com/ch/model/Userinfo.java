@@ -27,6 +27,8 @@ public class Userinfo {
 
     private int status;
 
+    private String headUrl;
+
     @Override
     public String toString() {
         return "Userinfo{" +
@@ -40,6 +42,7 @@ public class Userinfo {
                 ", createTime=" + createTime +
                 ", lastModify=" + lastModify +
                 ", status=" + status +
+                ", headUrl=" + headUrl +
                 '}';
     }
 
@@ -121,5 +124,13 @@ public class Userinfo {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getHeadUrl() {
+        return headUrl;
+    }
+
+    public void setHeadUrl(String headUrl) {
+        this.headUrl = headUrl;
     }
 }
