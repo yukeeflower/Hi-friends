@@ -32,7 +32,7 @@ function searchout() {
         document.getElementById("search-input").style.display = "none"
 }
 function golog() {
-    window.location.href = "http://localhost:8080/toLoginPage";
+    window.location.href = "http://localhost:8080/home/toLoginPage";
     // $.ajax({
     //     url : 'http://localhost:8080/toLoginPage',
     //     cache : false,

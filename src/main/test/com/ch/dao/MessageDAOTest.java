@@ -22,7 +22,7 @@ public class MessageDAOTest {
 
     @Test
     public void getMessageById() throws Exception {
-        Message message = messageDAO.getMessageById(1);
+        Message message = messageDAO.selectMessageById(1);
         System.out.println(message.toString());
     }
 

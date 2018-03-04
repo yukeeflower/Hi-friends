@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by apple on 2018/2/28.
  */
@@ -13,7 +15,9 @@ import org.springframework.stereotype.Repository;
 public interface ForumDAO {
 
     @Select({"select * from forum where id = #{id}"})
-    Forum getForumById(int id);
+    Forum selectForumById(int id);
 
+    @Select({"select * from forum order by id desc"})
+    List<Forum>selectLatestForums();
 
 }

@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface MessageDAO {
 
     @Select({"select * from message where id = #{id}"})
-    Message getMessageById(int id);
+    Message selectMessageById(int id);
 }

@@ -20,7 +20,7 @@ public class TipsDAOTest {
 
     @Test
     public void getTipById() throws Exception {
-        Tips tips = tipsDAO.getTipById(1);
+        Tips tips = tipsDAO.selectTipById(1);
         System.out.println(tips.toString());
     }
 

@@ -21,7 +21,7 @@ public class TagsDAOTest {
 
     @Test
     public void getTagById() throws Exception {
-        Tags tags = tagsDAO.getTagById(1);
+        Tags tags = tagsDAO.selectTagById(1);
         System.out.println(tags.toString());
     }
 
