@@ -22,23 +22,23 @@ public class UserinfoDAOTest {
 
     @Test
     public void getUserinfo() throws Exception {
-        Userinfo userinfo = userinfoDAO.getUserinfoById(1);
+        Userinfo userinfo = userinfoDAO.selectById(1);
         System.out.println(userinfo.getNickname());
     }
 
     @Test
     public void getUserinfoByUsername(){
-        Userinfo userinfo = userinfoDAO.getUserinfoByUsername("piao");
+        Userinfo userinfo = userinfoDAO.selectByUsername("piao");
         System.out.println(userinfo.toString());
     }
 
     @Test
     public void updatePasswordById(){
-        Userinfo userinfo = userinfoDAO.getUserinfoById(1);
+        Userinfo userinfo = userinfoDAO.selectById(1);
         System.out.println(userinfo.toString());
         int i = userinfoDAO.updatePasswordById(1,"123456",new Date());
         System.out.println(i);
-        userinfo = userinfoDAO.getUserinfoById(1);
+        userinfo = userinfoDAO.selectById(1);
         System.out.println(userinfo.toString());
     }
 
@@ -49,17 +49,19 @@ public class UserinfoDAOTest {
         userinfo.setPassword("123456");
         userinfo.setSalt("123456");
         userinfo.setEmail("56454564@163.com");
-        userinfo.setMoney(1000);
-        userinfo.setCreateTime(new Date());
-        userinfo.setLastModify(new Date());
+//        userinfo.setMoney(1000);
+//        userinfo.setCreateTime(new Date());
+//        userinfo.setLastModify(new Date());
         System.out.println(userinfoDAO.insertUser(userinfo));
     }
 
     @Test
     public void updateUserinfo(){
         Userinfo userinfo = new Userinfo();
+        userinfo.setId(1);
         userinfo.setNickname("筱橙子丶");
-        System.out.println(userinfoDAO.updateUserinfoSelective(1,"筱橙子丶",null));
+        userinfo.setMoney(100);
+        System.out.println(userinfoDAO.updateUserinfoSelective(userinfo));
     }
 
 }

@@ -12,24 +12,32 @@ import java.util.Date;
 public interface UserinfoDAO {
 
     @Select({"select * from Userinfo where id = #{id}"})
-    Userinfo getUserinfoById(int id);
+    Userinfo selectById(int id);
 
 
     @Select({"select * from Userinfo where username = #{username}"})
-    Userinfo getUserinfoByUsername(String username);
+    Userinfo selectByUsername(String username);
 
     @Update({"update userinfo set password = #{password},last_modify = #{lastModify} where id = #{id}"})
     int updatePasswordById(@Param("id") int id , @Param("password") String password, @Param("lastModify")Date lastModify);
 
 
-    @Update({"update userinfo set nickname = #{nickname},money = #{money},email = #{email},last_modify = #{lastModify} where id = #{0}"})
-    int updateUserinfo(int id ,@Param("nickname") String nickname,@Param("money") int money,@Param("email") String email,@Param("lastModify") Date lastModify);
+//    @Update({"update userinfo set nickname = #{nickname},money = #{money},email = #{email},last_modify = #{lastModify} where id = #{0}"})
+//    int updateUserinfo(int id ,@Param("nickname") String nickname,@Param("money") int money,@Param("email") String email,@Param("lastModify") Date lastModify);
 
     @Update({"<script>update userinfo set " +
-            "<if test=\"nickname != null \"> nickname = #{nickname}</if>," +
-            "<if test=\"email != null \"> email = #{email}</if> " +
+            "<trim suffixOverrides=\",\">"+
+            "<if test=\"username != null \"> username = #{username},</if>" +
+            "<if test=\"password != null \"> password = #{password},</if>" +
+            "<if test=\"nickname != null \"> nickname = #{nickname},</if>" +
+            "<if test=\"salt != null \"> salt = #{salt},</if>" +
+            "<if test=\"email != null \">email = #{email},</if> " +
+            "<if test=\"money != null \">money = #{money} ,</if>"+
+            "<if test=\"createTime != null \">create_time = #{createTime} ,</if>"+
+            "<if test=\"lastModify != null \">last_modify = #{lastModify} </if>"+
+            "</trim>"+
             "where id = #{id} </script>"})
-    int updateUserinfoSelective(@Param("id") int id ,@Param("nickname") String nickname,@Param("email") String email );
+    int updateUserinfoSelective(Userinfo userinfo );
 
     @Insert({"insert into userinfo(username,password,salt,nickname,money,email,create_time,last_modify) " +
             "values(#{username},#{password},#{salt},#{nickname},#{money},#{email},#{createTime},#{lastModify})"})
