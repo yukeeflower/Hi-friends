@@ -32,7 +32,7 @@ function searchout() {
         document.getElementById("search-input").style.display = "none"
 }
 function golog() {
-    window.location.href = "http://localhost:8080/home/toLoginPage";
+    window.location.href = urlPre + "/home/toLoginPage";
     // $.ajax({
     //     url : 'http://localhost:8080/toLoginPage',
     //     cache : false,
@@ -43,4 +43,7 @@ function golog() {
     //         alert("dasd")
     //     }
     // });
+}
+function goMySelf(userId) {
+    window.location.href =  urlPre + "/user/"+userId;
 }

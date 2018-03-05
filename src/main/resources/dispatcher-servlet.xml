@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <mvc:annotation-driven/>
-    <context:component-scan base-package="com.ch.controller"/>
+    <context:component-scan base-package="com.ch.*"/>
     <mvc:resources location="/WEB-INF/web/js/" mapping="/js/**"/>
     <mvc:resources location="/WEB-INF/web/css/" mapping="/css/**"/>
     <mvc:resources location="/WEB-INF/web/image/" mapping="/image/**"/>
@@ -27,8 +27,6 @@
             </props>
         </property>
     </bean>
-
-
     <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
     <!--<property name="prefix" value="/WEB-INF/web/"/>-->
     <!--<property name="suffix" value=".html"/>-->

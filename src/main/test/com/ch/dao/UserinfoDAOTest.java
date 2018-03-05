@@ -36,7 +36,7 @@ public class UserinfoDAOTest {
     public void updatePasswordById(){
         Userinfo userinfo = userinfoDAO.selectById(1);
         System.out.println(userinfo.toString());
-        int i = userinfoDAO.updatePasswordById(1,"123456",new Date());
+        int i = userinfoDAO.updatePasswordById(1,"123456","121",new Date());
         System.out.println(i);
         userinfo = userinfoDAO.selectById(1);
         System.out.println(userinfo.toString());

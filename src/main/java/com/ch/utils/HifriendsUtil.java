@@ -1,11 +1,27 @@
 package com.ch.utils;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.security.MessageDigest;
 
 /**
  * Created by apple on 2018/3/1.
  */
 public class HifriendsUtil {
+
+    public static String getJSONString(int code,String msg){
+        JSONObject json = new JSONObject();
+        json.put("code",code);
+        json.put("msg",msg);
+        return json.toJSONString();
+    }
+
+    public static String getJSONString(int code){
+        JSONObject json = new JSONObject();
+        json.put("code",code);
+        return json.toJSONString();
+    }
+
     public static String MD5(String key) {
         char hexDigits[] = {
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'

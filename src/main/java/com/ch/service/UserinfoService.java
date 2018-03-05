@@ -1,11 +1,14 @@
 package com.ch.service;
 
+import com.ch.controller.UserinfoController;
 import com.ch.dao.TokenDAO;
 import com.ch.dao.UserinfoDAO;
 import com.ch.model.Token;
 import com.ch.model.Userinfo;
 import com.ch.utils.HifriendsUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,8 @@ import java.util.*;
  */
 @Service
 public class UserinfoService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserinfoService.class);
 
     @Autowired
     private TokenDAO tokenDAO;
@@ -47,6 +52,7 @@ public class UserinfoService {
         String ticket = addToken(userinfo.getId());
         map.put("ticket",ticket);
         map.put("userId",userinfo.getId());
+        map.put("nickname",userinfo.getNickname());
         return map;
     }
 
@@ -92,7 +98,26 @@ public class UserinfoService {
     }
 
 
+    public Userinfo updateUserinfo(int userId,String nickname,String email){
+        try {
+            Userinfo userinfo = new Userinfo();
+            userinfo.setId(userId);
+            userinfo.setNickname(nickname);
+            userinfo.setEmail(email);
+            int i = userinfoDAO.updateUserinfoSelective(userinfo);
+            if (i > 0){
+                return userinfoDAO.selectById(userId);
+            }
+        }catch (Exception e){
+            logger.error("更新用户异常" + e.getMessage());
+        }
+        return null;
+    }
 
+    public int updatePassword(int userId,String password){
+        String salt = UUID.randomUUID().toString().substring(0, 5);
+        return userinfoDAO.updatePasswordById(userId,HifriendsUtil.MD5(password+salt),salt,new Date());
+    }
 
     private String addToken(int userId){
         Token token = new Token();

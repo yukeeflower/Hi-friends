@@ -20,4 +20,9 @@ public class TokenService {
     public Token getTokenByTicket(String token){
         return tokenDAO.selectByToken(token);
     }
+
+    public boolean checkIsExpired(String token){
+        Token token1 = tokenDAO.selectByToken(token);
+        return token1!= null && token1.getExpired().after(new Date())&&token1.getStatus()==0;
+    }
 }

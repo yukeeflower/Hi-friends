@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Hi,Friends的首页</title>
-    <link href="../css/home.css" rel="stylesheet">
-    <script src="../js/jquery-2.1.1/jquery.js" type="text/javascript"></script>
-    <script src="../js/home.js" type="text/javascript"></script>
+    <link href=" ${request.contextPath}/css/home.css" rel="stylesheet">
+    <script src="${request.contextPath}/js/jquery-2.1.1/jquery.js" type="text/javascript"></script>
+    <script src="${request.contextPath}/js/base.js" type="text/javascript"></script>
+    <script src="${request.contextPath}/js/home.js" type="text/javascript"></script>
 </head>
 <body>
 <!--头部导航栏-->
 <div class="top">
-        <img id="logo" src="../image/logo.png" >
+        <img id="logo" src=" ${request.contextPath}/image/logo.png" >
         <ul id="menu">
             <li>首页</li>
-            <li>个人主页</li>
+            <#if userId??>
+                <li onclick="goMySelf('${userId}')">个人主页</li>
+                <#else>
+                    <li onclick="goMySelf()">个人主页</li>
+            </#if>
+
             <li>用户中心</li>
         </ul>
         <ul id="top_bar">
@@ -24,7 +30,7 @@
                     <li>|</li>
                     <li  onclick="golog()">登录</li>
             </#if>
-
+           
         </ul>
     <div style="clear: both"></div>
 
@@ -32,7 +38,7 @@
 <!--搜索框-->
 <div id="search" >
     <div id="search-circle" onmouseover="searchon()" onmouseout="searchout()">
-        <img src="../image/icon_search.png">
+        <img src=" ${request.contextPath}/image/icon_search.png">
         <input name="search-input"  id="search-input" type="text" placeholder="请输入搜索内容">
     </div>
 
@@ -40,7 +46,7 @@
 <!--通知-->
 <div id="message">
     <div id="message_text">您有1条通知哦~点我来看看吧</div>
-    <img src="../image/message_pic2.png">
+    <img src=" ${request.contextPath}/image/message_pic2.png">
 </div>
 <!--内容-->
 <div id="body">
@@ -48,7 +54,7 @@
         <ul id="left_menu" >
             <li id="menu_title">
                 <span>热门趣点</span>
-                <img src="../image/icon_down.png">
+                <img src=" ${request.contextPath}/image/icon_down.png">
             </li>
             <li class="menu-point" onclick="">游戏天地</li>
             <li class="menu-point">产品运用</li>
@@ -63,21 +69,21 @@
             <div id="right-top-play">
                 <!--轮播-->
                 <a>
-                    <img src="../image/play-pic1.jpeg">
+                    <img src=" ${request.contextPath}/image/play-pic1.jpeg">
                     <span>一些炫酷逆天的产品，为何几年后被世界所遗忘？</span>
                 </a>
             </div>
             <div id="right-top-new">
                 <div id="right-top-newone" class="right-top-new">
                     <a>
-                        <img src="../image/top-pic1x2.png">
+                        <img src=" ${request.contextPath}/image/top-pic1x2.png">
                         <!--<div class="mask"></div>-->
                         <span id="new-text1">单词部落项目复盘</span>
                     </a>
                 </div>
                 <div id="right-top-newtwo"class="right-top-new">
                     <a>
-                        <img src="../image/top-pic2x2.png">
+                        <img src=" ${request.contextPath}/image/top-pic2x2.png">
                         <span id="new-text2">农村电商发展思考</span>
                     </a>
                 </div>
