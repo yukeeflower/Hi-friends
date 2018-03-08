@@ -21,7 +21,7 @@ public interface UserinfoDAO {
     Userinfo selectByUsername(String username);
 
     @Update({"update userinfo set password = #{password},salt = #{salt},last_modify = #{lastModify} where id = #{id}"})
-    int updatePasswordById(@Param("id") int id , @Param("password") String password,@RequestParam("salt")String salt, @Param("lastModify")Date lastModify);
+    int updatePasswordById(@Param("id") int id , @Param("password") String password,@Param("salt")String salt, @Param("lastModify")Date lastModify);
 
 
 //    @Update({"update userinfo set nickname = #{nickname},money = #{money},email = #{email},last_modify = #{lastModify} where id = #{0}"})

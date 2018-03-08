@@ -1,1 +1,1 @@
-var urlPre = "http://localhost:8080";
+var urlPre = "http://localhost:8080/hifriends";

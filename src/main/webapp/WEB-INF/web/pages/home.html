@@ -13,22 +13,24 @@
 <div class="top">
         <img id="logo" src=" ${request.contextPath}/image/logo.png" >
         <ul id="menu">
-            <li>首页</li>
-            <#if userId??>
-                <li onclick="goMySelf('${userId}')">个人主页</li>
+            <li><a href="${request.contextPath}/">首页</a></li>
+            <#if user??>
+                <!--<li onclick="goMySelf('${user.id}')">个人主页</li>-->
+                <li><a href="${request.contextPath}/user/profile/${user.id}">个人主页</a></li>
+                <li><a href="${request.contextPath}/user/${user.id}">用户中心</a></li>
                 <#else>
-                    <li onclick="goMySelf()">个人主页</li>
+                    <!--<li onclick="goMySelf(-1)">个人主页</li>-->
+                    <li><a href="${request.contextPath}/user/profile/-1">个人主页</a></li>
+                    <li><a href="${request.contextPath}/user/-1">用户中心</a></li>
             </#if>
-
-            <li>用户中心</li>
         </ul>
         <ul id="top_bar">
-            <#if nickname??>
-                ${nickname}
+            <#if user??>
+                ${user.nickname}
                 <#else>
                     <li>注册</li>
                     <li>|</li>
-                    <li  onclick="golog()">登录</li>
+                    <li><a href="${request.contextPath}/home/toLoginPage">登录</a></li>
             </#if>
            
         </ul>
@@ -106,6 +108,7 @@
             <!--文章-->
             <div class="content">
                 <#list vos as vo>
+                    <a href="${request.contextPath}/forum/${vo.forum.id}">
                 <div class="content-cell">
                     <div class="cell-layer" >
                         <div>产品运营</div>
@@ -130,15 +133,16 @@
                         </div>
                         <div class="newlist">
                             <ul>
-                                <li>100人浏览</li>
-                                <li>12人收藏</li>
-                                <li>4人评论</li>
+                                <li>${vo.forum.scanNum}人浏览</li>
+                                <li>${vo.forum.favorNum}人收藏</li>
+                                <li>${vo.forum.remarkNum}人评论</li>
 
                             </ul>
                         </div>
                         <div style="clear:both;"></div>
                     </div>
                 </div>
+                    </a>
                 </#list>
             </div>
         </div>

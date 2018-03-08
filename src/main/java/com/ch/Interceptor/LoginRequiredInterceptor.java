@@ -1,5 +1,7 @@
-package com.ch.Intercepter;
+package com.ch.Interceptor;
 
+import com.ch.model.HostHolder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,18 +15,15 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 public class LoginRequiredInterceptor implements HandlerInterceptor{
+
+    @Autowired
+    private HostHolder hostHolder;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Cookie cookies[] = request.getCookies();
-        String ticket = "";
-        for (Cookie cookie : cookies){
-            if (cookie.getName().equals("ticket")){
-                ticket = cookie.getValue();
-                break;
-            }
-        }
-        if (ticket.equals("")){
-            response.sendRedirect("/login?next="+request.getRequestURI());
+        if (hostHolder.getUsers() == null){
+            response.sendRedirect(request.getContextPath()+"/home/toLoginPage?next=" + request.getRequestURI());
+            return false;
         }
         return true;
     }

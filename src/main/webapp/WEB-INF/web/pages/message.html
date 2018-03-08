@@ -14,9 +14,15 @@
 <div class="top">
     <img id="logo" src=" ${request.contextPath}/image/logo.png" >
     <ul id="menu">
-        <li>首页</li>
-        <li>个人主页</li>
-        <li>用户中心</li>
+        <#if user??>
+            <!--<li onclick="goMySelf('${user.id}')">个人主页</li>-->
+            <li><a href="${request.contextPath}/user/profile/${user.id}">个人主页</a></li>
+            <li><a href="${request.contextPath}/user/${user.id}">用户中心</a></li>
+            <#else>
+                <!--<li onclick="goMySelf(-1)">个人主页</li>-->
+                <li><a href="${request.contextPath}/user/profile/-1">个人主页</a></li>
+                <li><a href="${request.contextPath}/user/-1">用户中心</a></li>
+        </#if>
     </ul>
     <ul id="top_bar">
         <li>注册</li>

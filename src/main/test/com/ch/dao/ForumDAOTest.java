@@ -30,7 +30,7 @@ public class ForumDAOTest {
     @Test
     public void getLatestForums() throws Exception {
         List<Forum> forum = forumDAO.selectLatestForums();
-        System.out.println(forum);
+        System.out.println(forum.size());
     }
 
 }

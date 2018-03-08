@@ -38,7 +38,9 @@ public class IndexController {
                 List<Forum> list = (List<Forum>) map.get("forumList");
                 for (Forum forum : list) {
                     ViewObject vo = new ViewObject();
-                    forum.setContent(forum.getContent().substring(0, 100) + "...");
+                    if (forum.getContent().length()>101){
+                        forum.setContent(forum.getContent().substring(0, 100) + "...");
+                    }
                     vo.set("forum", forum);
                     Map<String, Object> userMap = userinfoService.getUserinfo(forum.getUserId());
                     if (!userMap.containsKey("msg")) {

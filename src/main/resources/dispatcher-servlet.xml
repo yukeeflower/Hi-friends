@@ -12,7 +12,24 @@
     <mvc:resources location="/WEB-INF/web/js/" mapping="/js/**"/>
     <mvc:resources location="/WEB-INF/web/css/" mapping="/css/**"/>
     <mvc:resources location="/WEB-INF/web/image/" mapping="/image/**"/>
+    <mvc:resources location="/WEB-INF/web/face/" mapping="/face/**"/>
     <mvc:resources location="/WEB-INF/images/" mapping="/images/**"/>
+    <mvc:resources location="/WEB-INF/forumpics/" mapping="/forumpics/**"/>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+        <bean class="com.ch.Interceptor.PassportInterceptor"/>
+    </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/user/**"/>
+            <mvc:exclude-mapping path="/user/login"/>
+            <bean class="com.ch.Interceptor.LoginRequiredInterceptor"/>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+
     <bean id="freeMarkerConfigurer"
           class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="templateLoaderPath" value="/WEB-INF/web/pages"/>
@@ -49,7 +66,7 @@
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
-                <value>application/json;charset=UTF-8</value>
+                <value>text/json;charset=UTF-8</value>
                 <value>text/html;charset=UTF-8</value>
             </list>
         </property>
@@ -58,11 +75,10 @@
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
             <list>
-                <ref bean="mappingJacksonHttpMessageConverter"></ref>
+                <ref bean="mappingJacksonHttpMessageConverter"/>
             </list>
         </property>
     </bean>
-
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 上传文件大小上限，单位为字节（10MB） -->
         <property name="maxUploadSize">

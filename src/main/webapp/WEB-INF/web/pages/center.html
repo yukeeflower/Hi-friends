@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>用户中心</title>
+    <script src=" ${request.contextPath}/js/jquery-2.1.1/jquery.js" type="text/javascript"></script>
     <script src=" ${request.contextPath}/js/base.js" type="text/javascript"></script>
     <script type="text/javascript" src=" ${request.contextPath}/js/center.js"></script>
     <link href=" ${request.contextPath}/css/center.css" rel="stylesheet">
@@ -15,15 +16,22 @@
 <div class="top">
     <img id="logo" src=" ${request.contextPath}/image/logo.png" >
     <ul id="menu">
-        <li>首页</li>
-        <li>个人主页</li>
-        <li>用户中心</li>
+        <li><a href="${request.contextPath}/">首页</a></li>
+        <#if user??>
+            <!--<li onclick="goMySelf('${user.id}')">个人主页</li>-->
+            <li><a href="${request.contextPath}/user/profile/${user.id}">个人主页</a></li>
+            <li><a href="${request.contextPath}/user/${user.id}">用户中心</a></li>
+            <#else>
+                <!--<li onclick="goMySelf(-1)">个人主页</li>-->
+                <li><a href="${request.contextPath}/user/profile/-1">个人主页</a></li>
+                <li><a href="${request.contextPath}/user/-1">用户中心</a></li>
+        </#if>
     </ul>
-    <ul id="top_bar">
-        <li>注册</li>
-        <li>|</li>
-        <li onclick="golog()">登录</li>
-    </ul>
+    <!--<ul id="top_bar">-->
+        <!--<li>注册</li>-->
+        <!--<li>|</li>-->
+        <!--<li onclick="golog()">登录</li>-->
+    <!--</ul>-->
     <div style="clear: both"></div>
     <!--头部导航栏用户信息-->
     <div id="usermessage">
@@ -89,10 +97,14 @@
             <img src=" ${request.contextPath}/image/line.png" class="top-line">
         </div>
         <div class="box-neirong">
-            <form>
+            <!--<form>-->
                 <li><label>原密码</label>
                     <input name="userpassold" id="userpass-old"  type="password">
                 </li>
+                <div class="icons-image">
+                    <img src="${request.contextPath}/image/icon-erro.png" class="erro-icon">
+                    <img src="${request.contextPath}/image/icon-right.png" class="right-icon">
+                </div>
                 <li>
                     <label>新密码</label>
                     <input name="userpassnew" id="userpassnew" type="password">
@@ -101,11 +113,15 @@
                     <lable style="font-family:PingFangSC-Semibold; font-size:20px;color:#4a4a4a; margin-right: 60px;">确认密码</lable>
                     <input name="userpasssure" id="userpasssure" type="password" style="position: relative;left: -8px;">
                 </li>
+                <div class="icons-image">
+                    <img src="${request.contextPath}/image/icon-erro.png" class="erro-icon">
+                    <img src="${request.contextPath}/image/icon-right.png" class="right-icon">
+                </div>
                 <li>
-                    <button class="btn-save">保存</button>
+                    <button class="btn-save" id="btn-pass-save" onclick="updatePass()">保存</button>
                     <button class="btn-clear">取消</button>
                 </li>
-            </form>
+            <!--</form>-->
         </div>
     </div>
     <div id="userpic-box">
@@ -115,17 +131,19 @@
             <img src=" ${request.contextPath}/image/line.png" class="top-line">
         </div>
         <div class="box-neirong">
-            <form>
+            <!--<form>-->
                 <li>
                     <p>头像</p>
                     <img src="${user.headUrl}" id="body-userpic">
                     <img src=" ${request.contextPath}/image/center-userbg.png" id="body-userbd">
                 </li>
-                <li>
-                    <button class="btn-save">保存</button>
-                    <button class="btn-clear">取消</button>
+                <li class="file-box">
+
+                    <input type="file" name="file" class="file" onchange="selectImage(this)" id="file">
+                    <button class="btn-save">上传</button>
+                    <button class="btn-clear" onclick="uploadImage()">保存</button>
                 </li>
-            </form>
+            <!--</form>-->
         </div>
     </div>
 

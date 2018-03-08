@@ -31,19 +31,24 @@ function searchout() {
     document.getElementById("search-circle").style.width="74px";
         document.getElementById("search-input").style.display = "none"
 }
-function golog() {
-    window.location.href = urlPre + "/home/toLoginPage";
-    // $.ajax({
-    //     url : 'http://localhost:8080/toLoginPage',
-    //     cache : false,
-    //     async : false,
-    //     type : "GET",
-    //     dataType : 'json/xml/html',
-    //     success : function (result){
-    //         alert("dasd")
-    //     }
-    // });
-}
-function goMySelf(userId) {
-    window.location.href =  urlPre + "/user/"+userId;
-}
+// function golog() {
+//     window.location.href = urlPre + "/home/toLoginPage";
+//     // $.ajax({
+//     //     url : 'http://localhost:8080/toLoginPage',
+//     //     cache : false,
+//     //     async : false,
+//     //     type : "GET",
+//     //     dataType : 'json/xml/html',
+//     //     success : function (result){
+//     //         alert("dasd")
+//     //     }
+//     // });
+// }
+// function goMySelf(userId) {
+//     if(userId==="-1"){
+//         window.location.href =  urlPre + "/user/toCenterPage";
+//     }else{
+//         window.location.href =  urlPre + "/user/"+userId;
+//     }
+//
+// }

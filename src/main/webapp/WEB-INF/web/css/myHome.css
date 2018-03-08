@@ -266,7 +266,7 @@ body{
     color:#4a4a4a;
 }
 #pointlist-body #menu_title{
-    background: url("image/body_left_titlebg.png");
+    background: url("../image/body_left_titlebg.png");
     color:#ffcd00;
     text-align:center;
 }
@@ -288,7 +288,7 @@ body{
     /*background: #FFFFFF*/
 }
 .content .content-cell .cell-layer div{
-    background: url("image/layer-bg.png") no-repeat;
+    background: url("../image/layer-bg.png") no-repeat;
     margin-top: 20px;
     width: 79px;
     height: 42px;

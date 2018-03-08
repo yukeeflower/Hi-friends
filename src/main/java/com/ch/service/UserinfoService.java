@@ -119,6 +119,16 @@ public class UserinfoService {
         return userinfoDAO.updatePasswordById(userId,HifriendsUtil.MD5(password+salt),salt,new Date());
     }
 
+    public boolean checkOldPass(int userId,String oldPass){
+        Userinfo userinfo = (Userinfo) getUserinfo(userId).get("userinfo");
+        if (userinfo!=null){
+            if (HifriendsUtil.MD5(oldPass+userinfo.getSalt()).equals(userinfo.getPassword())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private String addToken(int userId){
         Token token = new Token();
         Date now = new Date();

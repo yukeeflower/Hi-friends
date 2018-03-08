@@ -1,4 +1,4 @@
-package com.ch.Intercepter;
+package com.ch.Interceptor;
 
 import com.ch.dao.TokenDAO;
 import com.ch.dao.UserinfoDAO;
@@ -19,7 +19,7 @@ import java.util.Date;
  * Created by apple on 2018/3/5.
  */
 @Component
-public class LoginIntecepter implements HandlerInterceptor{
+public class PassportInterceptor implements HandlerInterceptor{
     @Autowired
     private UserinfoDAO userinfoDAO;
     @Autowired
@@ -44,7 +44,7 @@ public class LoginIntecepter implements HandlerInterceptor{
             if (ticket1 == null || ticket1.getExpired().before(new Date())||ticket1.getStatus()==1){
                 return true;
             }
-            Userinfo userinfo = userinfoDAO.selectById(ticket1.getId());
+            Userinfo userinfo = userinfoDAO.selectById(ticket1.getUserId());
             hostHolder.setUsers(userinfo);
         }
         return true;
