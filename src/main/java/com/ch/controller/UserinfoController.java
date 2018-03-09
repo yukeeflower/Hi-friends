@@ -49,7 +49,7 @@ public class UserinfoController {
 
     @RequestMapping(value = "/toCenterPage", method = RequestMethod.GET)
     public String toCenterPage(HttpServletRequest request) {
-        return "redirect:/"+request.getContextPath()+"/user/" + hostHolder.getUsers().getId();
+        return "redirect:/user/" + hostHolder.getUsers().getId();
     }
 
     @RequestMapping(value = "/profile/{userId}", method = RequestMethod.GET)
@@ -66,7 +66,7 @@ public class UserinfoController {
 
     @RequestMapping(value = "/toMyHomePage", method = RequestMethod.GET)
     public String toMyHomePage(HttpServletRequest request, HttpServletResponse response) {
-        return "redirect:/"+request.getContextPath()+"/user/profile/" + hostHolder.getUsers().getId();
+        return "redirect:/user/profile/" + hostHolder.getUsers().getId();
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -79,11 +79,11 @@ public class UserinfoController {
                 response.addCookie(cookie);
                 if (StringUtils.isNotBlank(next)) {
                     if (next.contains("profile")) {
-                        return "redirect:/"+request.getContextPath()+"/user/toMyHomePage";
+                        return "redirect:/user/toMyHomePage";
                     } else if (!next.contains("profile") && next.contains("-1")) {
-                        return "redirect:/"+request.getContextPath()+"/user/toCenterPage";
+                        return "redirect:/user/toCenterPage";
                     }
-                    return "redirect:/"+request.getContextPath()+"/"+ next;
+                    return "redirect:/"+ next;
                 }
                 return "redirect:/";
             } else {
