@@ -3,28 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Hi,Friends的首页</title>
-    <link href="../css/home.css" rel="stylesheet">
-    <script src="../js/jquery-2.1.1/jquery.js" type="text/javascript"></script>
-    <script src="../js/home.js" type="text/javascript"></script>
+    <link href=" ${request.contextPath}/css/home.css" rel="stylesheet">
+    <script src="${request.contextPath}/js/jquery-2.1.1/jquery.js" type="text/javascript"></script>
+    <script src="${request.contextPath}/js/base.js" type="text/javascript"></script>
+    <script src="${request.contextPath}/js/home.js" type="text/javascript"></script>
 </head>
 <body>
 <!--头部导航栏-->
 <div class="top">
-        <img id="logo" src="../image/logo.png" >
+        <img id="logo" src=" ${request.contextPath}/image/logo.png" >
         <ul id="menu">
-            <li>首页</li>
-            <li>个人主页</li>
-            <li>用户中心</li>
+            <li><a href="${request.contextPath}/">首页</a></li>
+            <#if user??>
+                <!--<li onclick="goMySelf('${user.id}')">个人主页</li>-->
+                <li><a href="${request.contextPath}/user/profile/${user.id}">个人主页</a></li>
+                <li><a href="${request.contextPath}/user/${user.id}">用户中心</a></li>
+                <#else>
+                    <!--<li onclick="goMySelf(-1)">个人主页</li>-->
+                    <li><a href="${request.contextPath}/user/profile/-1">个人主页</a></li>
+                    <li><a href="${request.contextPath}/user/-1">用户中心</a></li>
+            </#if>
         </ul>
         <ul id="top_bar">
-            <#if nickname??>
-                ${nickname}
+            <#if user??>
+                ${user.nickname}
                 <#else>
                     <li>注册</li>
                     <li>|</li>
-                    <li  onclick="golog()">登录</li>
+                    <li><a href="${request.contextPath}/home/toLoginPage">登录</a></li>
             </#if>
-
+           
         </ul>
     <div style="clear: both"></div>
 
@@ -32,7 +40,7 @@
 <!--搜索框-->
 <div id="search" >
     <div id="search-circle" onmouseover="searchon()" onmouseout="searchout()">
-        <img src="../image/icon_search.png">
+        <img src=" ${request.contextPath}/image/icon_search.png">
         <input name="search-input"  id="search-input" type="text" placeholder="请输入搜索内容">
     </div>
 
@@ -40,7 +48,7 @@
 <!--通知-->
 <div id="message">
     <div id="message_text">您有1条通知哦~点我来看看吧</div>
-    <img src="../image/message_pic2.png">
+    <img src=" ${request.contextPath}/image/message_pic2.png">
 </div>
 <!--内容-->
 <div id="body">
@@ -48,7 +56,7 @@
         <ul id="left_menu" >
             <li id="menu_title">
                 <span>热门趣点</span>
-                <img src="../image/icon_down.png">
+                <img src=" ${request.contextPath}/image/icon_down.png">
             </li>
             <li class="menu-point" onclick="">游戏天地</li>
             <li class="menu-point">产品运用</li>
@@ -63,21 +71,21 @@
             <div id="right-top-play">
                 <!--轮播-->
                 <a>
-                    <img src="../image/play-pic1.jpeg">
+                    <img src=" ${request.contextPath}/image/play-pic1.jpeg">
                     <span>一些炫酷逆天的产品，为何几年后被世界所遗忘？</span>
                 </a>
             </div>
             <div id="right-top-new">
                 <div id="right-top-newone" class="right-top-new">
                     <a>
-                        <img src="../image/top-pic1x2.png">
+                        <img src=" ${request.contextPath}/image/top-pic1x2.png">
                         <!--<div class="mask"></div>-->
                         <span id="new-text1">单词部落项目复盘</span>
                     </a>
                 </div>
                 <div id="right-top-newtwo"class="right-top-new">
                     <a>
-                        <img src="../image/top-pic2x2.png">
+                        <img src=" ${request.contextPath}/image/top-pic2x2.png">
                         <span id="new-text2">农村电商发展思考</span>
                     </a>
                 </div>
@@ -100,6 +108,7 @@
             <!--文章-->
             <div class="content">
                 <#list vos as vo>
+                    <a href="${request.contextPath}/forum/${vo.forum.id}">
                 <div class="content-cell">
                     <div class="cell-layer" >
                         <div>产品运营</div>
@@ -124,15 +133,16 @@
                         </div>
                         <div class="newlist">
                             <ul>
-                                <li>100人浏览</li>
-                                <li>12人收藏</li>
-                                <li>4人评论</li>
+                                <li>${vo.forum.scanNum}人浏览</li>
+                                <li>${vo.forum.favorNum}人收藏</li>
+                                <li>${vo.forum.remarkNum}人评论</li>
 
                             </ul>
                         </div>
                         <div style="clear:both;"></div>
                     </div>
                 </div>
+                    </a>
                 </#list>
             </div>
         </div>

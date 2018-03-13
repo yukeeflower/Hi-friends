@@ -7,6 +7,9 @@ import java.util.Date;
  */
 public class Remark {
 
+    public static final int REMARK_TYPE_FORUM = 1;
+    public static final int REMARK_TYPE_USER = 2;
+
     private int id;
 
     private int userId;

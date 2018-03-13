@@ -31,4 +31,14 @@ public class ForumServiceTest {
     public void getLatestForums() throws Exception {
     }
 
+    @Test
+    public void addForum() throws Exception {
+        forumService.addForum(1,"今天天气真晴朗","萨顶顶撒大所大所多萨达刚发的广泛地都是废话金卡戴珊发送客户打算打了肯定会萨克良好的萨带回来喀什烦得很即可更好地萨科技发货湿哒哒所","产品运营","sadsa");
+    }
+
+    @Test
+    public void updateForumPics() throws Exception {
+        forumService.updateForumPics(1,"http//asdasdsa");
+    }
+
 }

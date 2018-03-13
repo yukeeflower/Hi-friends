@@ -2,6 +2,8 @@ package com.ch.dao;
 import org.apache.ibatis.annotations.*;
 import com.ch.model.Userinfo;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.Date;
 
 /**
@@ -18,8 +20,8 @@ public interface UserinfoDAO {
     @Select({"select * from Userinfo where username = #{username}"})
     Userinfo selectByUsername(String username);
 
-    @Update({"update userinfo set password = #{password},last_modify = #{lastModify} where id = #{id}"})
-    int updatePasswordById(@Param("id") int id , @Param("password") String password, @Param("lastModify")Date lastModify);
+    @Update({"update userinfo set password = #{password},salt = #{salt},last_modify = #{lastModify} where id = #{id}"})
+    int updatePasswordById(@Param("id") int id , @Param("password") String password,@Param("salt")String salt, @Param("lastModify")Date lastModify);
 
 
 //    @Update({"update userinfo set nickname = #{nickname},money = #{money},email = #{email},last_modify = #{lastModify} where id = #{0}"})

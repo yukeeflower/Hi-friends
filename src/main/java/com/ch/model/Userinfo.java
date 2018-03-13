@@ -29,6 +29,8 @@ public class Userinfo {
 
     private String headUrl;
 
+    private String tags;
+
     @Override
     public String toString() {
         return "Userinfo{" +
@@ -43,6 +45,7 @@ public class Userinfo {
                 ", lastModify=" + lastModify +
                 ", status=" + status +
                 ", headUrl=" + headUrl +
+                ", tags=" + tags +
                 '}';
     }
 
@@ -132,5 +135,13 @@ public class Userinfo {
 
     public void setHeadUrl(String headUrl) {
         this.headUrl = headUrl;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 }
