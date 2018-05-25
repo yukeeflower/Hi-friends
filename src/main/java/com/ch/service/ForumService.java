@@ -67,4 +67,31 @@ public class ForumService {
         }
         return vos;
     }
+
+    public int addScanNum(int forumId){
+        int num = forumDAO.selectForumById(forumId).getScanNum();
+        num++;
+        Forum forum = new Forum();
+        forum.setId(forumId);
+        forum.setScanNum(num);
+        return forumDAO.updateForumSelective(forum);
+    }
+
+    public int addFavorNum(int forumId){
+        int num = forumDAO.selectForumById(forumId).getFavorNum();
+        num++;
+        Forum forum = new Forum();
+        forum.setId(forumId);
+        forum.setFavorNum(num);
+        return forumDAO.updateForumSelective(forum);
+    }
+
+    public int addRemarkNum(int forumId){
+        int num = forumDAO.selectForumById(forumId).getRemarkNum();
+        num++;
+        Forum forum = new Forum();
+        forum.setId(forumId);
+        forum.setRemarkNum(num);
+        return forumDAO.updateForumSelective(forum);
+    }
 }

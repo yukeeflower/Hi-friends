@@ -2,6 +2,7 @@ package com.ch.controller;
 
 import com.ch.model.HostHolder;
 import com.ch.model.Remark;
+import com.ch.service.ForumService;
 import com.ch.service.RemarkService;
 import com.ch.utils.HifriendsUtil;
 import org.apache.ibatis.annotations.Param;
@@ -26,6 +27,8 @@ public class RemarkController {
     @Autowired
     private RemarkService remarkService;
     @Autowired
+    private ForumService forumService;
+    @Autowired
     private HostHolder hostHolder;
 
     @RequestMapping(value = "addForumRemark",method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
@@ -45,6 +48,7 @@ public class RemarkController {
                 }
                 if (!content.equals("")&&forumId!=0){
                     remarkService.addRemark(content, Remark.REMARK_TYPE_FORUM,forumId,hostHolder.getUsers().getId());
+                    forumService.addRemarkNum(forumId);
                     return HifriendsUtil.getJSONString(200,"增加评论成功");
                 }else {
                     return HifriendsUtil.getJSONString(500,"增加评论失败");

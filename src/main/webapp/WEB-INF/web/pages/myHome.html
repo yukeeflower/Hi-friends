@@ -36,11 +36,11 @@
             <img src=" ${request.contextPath}/image/center-userbg.png" id="top-userbg">
         </div>
         <div id="top-userright">
-            <div id="top-username"><span>小雪花</span></div>
+            <div id="top-username"><span>${user.nickname}</span></div>
             <div id="top-tab">
-                <li id="toptab1">我的文章</li>
-                <li id="toptab2">我的收藏</li>
-                <li id="toptab3">我的关注</li>
+                <li id="toptab1" class="active"><a href="${request.contextPath}/user/profile/${user.id}">我的文章</a></li>
+                <li id="toptab2"> <a href="${request.contextPath}/forum/getMyFavor">我的收藏</a></li>
+                <li id="toptab3"><a href="${request.contextPath}/user/profile/2">我的关注</a></li>
 
             </div>
         </div>
@@ -128,7 +128,7 @@
                                             <img class="user-logo" src="${vo.user.headUrl}">
                                             <span class="user-name">${vo.user.nickname}</span>
                                         </div>
-                                        <div class="cell-time">${vo.forum.createTime?string("yyyy-MM-dd HH:mm:ss")}</div>
+                                        <div class="cell-time">${vo.forum.createTime?string("yyyy-MM-dd hh:mm:ss")}</div>
                                     </div>
                                 </div>
                                 <div class="newlist">

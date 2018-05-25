@@ -25,7 +25,9 @@ function addForum() {
             if (data.code===200){
                 window.location.href = urlPre+"/user/toMyHomePage";
             }else {
-                alert("发表失败");
+                if(data.code === 500){
+                    alert(data.msg);
+                }
             }
         },
         error:function (err) {

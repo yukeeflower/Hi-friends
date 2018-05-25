@@ -1,6 +1,7 @@
 package com.ch.controller;
 
 import com.ch.model.*;
+import com.ch.service.FavorService;
 import com.ch.service.ForumService;
 import com.ch.service.RemarkService;
 import com.ch.service.UserinfoService;
@@ -35,6 +36,8 @@ public class ForumController {
     private RemarkService remarkService;
     @Autowired
     private HostHolder hostHolder;
+    @Autowired
+    private FavorService favorService;
 //
 
 
@@ -56,10 +59,10 @@ public class ForumController {
 
     @RequestMapping(value = "/{forumId}", method = RequestMethod.GET)
     public ModelAndView getForumDetail(@PathVariable("forumId") int forumId) {
+        forumService.addScanNum(forumId);
         ViewObject vo = new ViewObject();
         Forum forum = forumService.getForumDetail(forumId);
-        System.out.println(forum.getPictures());
-        if (forum.getPictures()!=null||!forum.getPictures().equals("")){
+        if (forum.getPictures()!=null && !forum.getPictures().equals("")){
             String[] pics = forum.getPictures().split(";");
             String img ="";
             for (int i = 0;i<pics.length;i++){
@@ -90,6 +93,9 @@ public class ForumController {
     public String addForum( String title, String content, String tags,String pics) {
         try {
             if (hostHolder.getUsers() !=null){
+                if(title.length() > 50){
+                    return HifriendsUtil.getJSONString(500,"发表失败，标题不能超过50个字符");
+                }
                 if (forumService.addForum(hostHolder.getUsers().getId(), title, content, tags,pics) > 0) {
                     return HifriendsUtil.getJSONString(200,"success");
                 }
@@ -120,4 +126,33 @@ public class ForumController {
         }
         return HifriendsUtil.getJSONString(500,"用户验证错误");
     }
+
+    @RequestMapping(value = "/favor",method = RequestMethod.POST)
+    @ResponseBody
+    public String favorForum( @RequestParam("forumId") Integer forumId){
+        if (hostHolder.getUsers() != null){
+            if (!favorService.checkFavorIsExist(forumId,hostHolder.getUsers().getId())){
+                if (favorService.addFavor(hostHolder.getUsers().getId(),forumId) > 0){
+                    if (forumService.addFavorNum(forumId) > 0){
+                        return HifriendsUtil.getJSONString(200,"收藏成功");
+                    }
+                }
+            }else {
+                return HifriendsUtil.getJSONString(500,"您已经收藏过");
+            }
+
+        }
+        return HifriendsUtil.getJSONString(500,"收藏失败");
+    }
+
+
+    @RequestMapping(value = "/getMyFavor")
+    public ModelAndView getMyFavor(){
+        ModelAndView mv = new ModelAndView("myHome");
+        Integer id = hostHolder.getUsers().getId();
+        List<ViewObject>forums = favorService.getMyFavors(id);
+        mv.addObject("vos",forums);
+        return mv;
+    }
+
 }

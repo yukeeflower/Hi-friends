@@ -55,3 +55,27 @@ function searchout() {
     document.getElementById("search-circle").style.width = "74px";
     document.getElementById("search-input").style.display = "none"
 }
+function favor(forumId) {
+    // var json = {
+    //     "forumId": forumId
+    // };
+    $.ajax({
+        url: urlPre + "/forum/favor",
+        type: "POST",
+        dataType: 'json',
+        data: {
+            "forumId":forumId
+        },
+        success: function (data) {
+            if (data.code === 200) {
+                alert("收藏成功");
+                // $('#likeIcon').src = 'localhost:8080/image/articlepage-likeicon_selected.png';
+            } else {
+                alert("您已经收藏过");
+            }
+        },
+        error: function () {
+            alert("网络故障，请稍后再试");
+        }
+    });
+}

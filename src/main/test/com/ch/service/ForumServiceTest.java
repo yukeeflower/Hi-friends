@@ -1,5 +1,6 @@
 package com.ch.service;
 
+import com.ch.cache.TagsCache;
 import com.ch.model.Forum;
 import com.ch.model.ViewObject;
 import org.junit.Test;
@@ -26,7 +27,8 @@ public class ForumServiceTest {
     private ForumService forumService;
     @Autowired
     private UserinfoService userinfoService;
-
+    @Autowired
+    TagsCache tagsCache;
     @Test
     public void getLatestForums() throws Exception {
     }
@@ -41,4 +43,13 @@ public class ForumServiceTest {
         forumService.updateForumPics(1,"http//asdasdsa");
     }
 
+    @Test
+    public void test(){
+        tagsCache.lpush(String.valueOf(1),String.valueOf(1));
+        tagsCache.lpush(String.valueOf(1),String.valueOf(2));
+        tagsCache.lpush(String.valueOf(1),String.valueOf(3));
+        tagsCache.lpush(String.valueOf(1),String.valueOf(4));
+        tagsCache.lpush(String.valueOf(1),String.valueOf(5));
+        System.out.println(tagsCache.lrange(String.valueOf(1)));
+    }
 }

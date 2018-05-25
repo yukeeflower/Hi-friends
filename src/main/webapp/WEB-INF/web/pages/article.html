@@ -106,8 +106,8 @@
                     <p>打赏是对原创者的最大认可</p>
                 </div>
                 <div id="article-like">
-                    <button id="button_like">
-                        <img src="${request.contextPath}/image/articlepage-likeicon.png">
+                    <button id="button_like" onclick="favor(${vo.forum.id})">
+                        <img id="likeIcon" src="${request.contextPath}/image/articlepage-likeicon.png">
                         <span>收藏</span>
                     </button>
                     <div style="clear: both"></div>
